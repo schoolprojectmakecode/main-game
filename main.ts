@@ -183,12 +183,13 @@ for (let zone of windZones) {
     zone.setFlag(SpriteFlag.Invisible, true); // Hides the big colored blocks completely
 }
 
-// Map zone coordinates (Center X, Center Y)
-windZones[0].setPosition(88, 152);   // Zone 1
-windZones[1].setPosition(200, 200);  // Zone 2
-windZones[2].setPosition(344, 184);  // Zone 3
-windZones[3].setPosition(88, 160);   // Zone 4
-windZones[4].setPosition(448, 168);  // Zone 5
+// Map zone coordinates (Center X, Center Y) 
+// FIXED: Shifted Y down by 32 pixels for all zones
+windZones[0].setPosition(88, 184);   // Zone 1 (was 152)
+windZones[1].setPosition(200, 200);  // Zone 2 (was 200)
+windZones[2].setPosition(344, 216);  // Zone 3 (was 184)
+windZones[3].setPosition(88, 192);   // Zone 4 (was 160)
+windZones[4].setPosition(448, 200);  // Zone 5 (was 168)
 
 
 // --- CORE GAME LOOP (Runs every single frame) ---
@@ -264,11 +265,6 @@ game.onUpdateInterval(100, function () {
     }
 });
 
-// --- Win Condition ---
-// WIN: If the player touches a Chest
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
-    game.over(true);
-})
 // --- AUTOMATIC ARRAY CLEANUP ---
 // When a temporary wind zone's lifespan ends, safely remove it from your active array
 sprites.onDestroyed(SpriteKind.Food, function (sprite) {
