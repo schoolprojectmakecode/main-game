@@ -164,18 +164,17 @@ controller.moveSprite(player, MOVE_SPEED, 0); // Left/Right movement only
 scene.cameraFollowSprite(player);
 
 // --- Defining Invisible Wind Zones ---
-// FIXED: Filled the canvas images with solid color (color index 1) so collision pixels exist!
 let windZones: Sprite[] = [
-    // Zone 1: columns 10-16, rows 3-15
-    sprites.create(image.create(112, 208), SpriteKind.Food),
-    // Zone 2: columns 20-23, rows 3-15
-    sprites.create(image.create(64, 208), SpriteKind.Food),
-    // Zone 3: columns 39-40, rows 5-15
-    sprites.create(image.create(32, 176), SpriteKind.Food),
-    // Zone 4: columns 47-48, rows 4-15
-    sprites.create(image.create(32, 192), SpriteKind.Food),
-    // Zone 5: columns 55-56, rows 3-15
-    sprites.create(image.create(32, 208), SpriteKind.Food)
+    // Zone 1: columns 4-6, rows 3-15 (Width: 48, Height: 208)
+    sprites.create(image.create(48, 208), SpriteKind.Food),
+    // Zone 2: columns 11-13, rows 9-15 (Width: 48, Height: 112)
+    sprites.create(image.create(48, 112), SpriteKind.Food),
+    // Zone 3: columns 19-23, rows 7-15 (Width: 80, Height: 144)
+    sprites.create(image.create(80, 144), SpriteKind.Food),
+    // Zone 4: columns 4-6, rows 4-15 (Width: 48, Height: 192)
+    sprites.create(image.create(48, 192), SpriteKind.Food),
+    // Zone 5: columns 27-28, rows 5-15 (Width: 32, Height: 176)
+    sprites.create(image.create(32, 176), SpriteKind.Food)
 ];
 
 // Fill the canvases with a block of color so overlaps trigger, then hide them from view
@@ -184,12 +183,12 @@ for (let zone of windZones) {
     zone.setFlag(SpriteFlag.Invisible, true); // Hides the big colored blocks completely
 }
 
-// Map zone coordinates
-windZones[0].setPosition(216, 152);
-windZones[1].setPosition(352, 152);
-windZones[2].setPosition(656, 168);
-windZones[3].setPosition(784, 160);
-windZones[4].setPosition(912, 152);
+// Map zone coordinates (Center X, Center Y)
+windZones[0].setPosition(88, 152);   // Zone 1
+windZones[1].setPosition(200, 200);  // Zone 2
+windZones[2].setPosition(344, 184);  // Zone 3
+windZones[3].setPosition(88, 160);   // Zone 4
+windZones[4].setPosition(448, 168);  // Zone 5
 
 
 // --- CORE GAME LOOP (Runs every single frame) ---
